@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Добро пожаловать в Complete OS</title>
+
+    <HTA:APPLICATION 
+        ID="oHTA"
+        APPLICATIONNAME="CompleteOSSetup"
+        BORDER="dialog"
+        CAPTION="yes"
+        SHOWINTASKBAR="yes"
+        SINGLEINSTANCE="yes"
+        SYSMENU="yes"
+        SCROLL="no"
+        WINDOWSTATE="normal">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: "Segoe UI", Arial, sans-serif; }
+        
+        body {
+            background: linear-gradient(135deg, #0b0c10 0%, #1f2833 40%, #4b79a1 100%);
+            height: 100vh; display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        
+        .card {
+            background: #ffffff; width: 90%; max-width: 650px; padding: 32px;
+            border-radius: 16px; box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+            text-align: left; min-height: 450px; display: flex; flex-direction: column;
+            position: relative;
+        }
+        
+        h1 { font-size: 24px; color: #1a73e8; margin-bottom: 8px; }
+        .subtitle { font-size: 13px; color: #5f6368; margin-bottom: 20px; }
+        p { font-size: 14px; line-height: 1.5; color: #3c4043; margin-bottom: 10px; }
+        
+        .highlight { margin-top: auto; padding: 10px 12px; background: #f1f3f4; border-radius: 8px; font-size: 13px; color: #5f6368; }
+        
+    
+        .option-card {
+            margin-bottom: 12px; padding: 12px; border: 1px solid #eee; border-radius: 8px;
+            cursor: pointer; transition: background 0.2s; display: flex; align-items: flex-start;
+        }
+        .option-card:hover { background: #f8f9fa; border-color: #d2d2d2; }
+        .option-card input { margin-top: 4px; margin-right: 12px; }
+        .option-text { flex: 1; }
+        .option-title { display: block; font-weight: bold; font-size: 14px; color: #202124; }
+        .option-desc { display: block; font-size: 12px; color: #5f6368; margin-top: 4px; }
+        
+        .feature-list { margin: 10px 0 20px 18px; padding-left: 0; }
+        .feature-list li { margin-bottom: 6px; font-size: 13px; color: #3c4043; }
+
+        .actions { margin-top: 24px; text-align: right; }
+        
+        button {
+            padding: 10px 22px; font-size: 14px; border-radius: 6px; border: none;
+            background-color: #1a73e8; color: #ffffff; cursor: pointer; font-weight: 500;
+            transition: background 0.2s;
+        }
+        button:hover { background-color: #1557b0; }
+        .btn-secondary { background: #f5f6f7; color: #444; border: 1px solid #ccd0d5; margin-right: 8px; }
+        .btn-secondary:hover { background: #e4e6eb; }
+
+       
+        #slide5 { text-align: center; display: flex; flex-direction: column; justify-content: center; height: 100%; flex: 1; }
+        #slide5 h1 { margin-bottom: 20px; color: #2d3436; font-size: 28px; }
+        #slide5 p { font-size: 16px; color: #636e72; margin-bottom: 40px; }
+        #slide5 .big-btn { padding: 15px 40px; font-size: 16px; align-self: center; background: #00b894; }
+        #slide5 .big-btn:hover { background: #00a884; }
+
+        
+        #slide2, #slide3, #slide4, #slide5 { display: none; }
+    </style>
+
+    <script type="text/javascript">
+        window.resizeTo(720, 600); 
+
+        function ShowSlide(n) {
+            for(var i=1; i<=5; i++) {
+                var el = document.getElementById('slide' + i);
+                if(el) el.style.display = 'none';
+            }
+            document.getElementById('slide' + n).style.display = 'block';
+            
+            // Если это финальный слайд, делаем карточку флексом для центровки
+            if(n === 5) {
+                document.getElementById('slide5').style.display = 'flex';
+            }
+        }
+
+        function ApplySettings() {
+           
+            var bitlocker = document.getElementById('rbBitlockerOn').checked;
+            if(bitlocker) {
+               
+            }
+            
+           
+            var chrome = document.querySelector('input[name="browser"][value="chrome"]').checked;
+            if(chrome) {
+                
+            }
+            
+            
+            ShowSlide(5);
+        }
+
+        function CloseApp() {
+            window.close();
+        }
+    </script>
+</head>
+
+<body>
+    <div class="card">
+
+       
+        <div id="slide1">
+            <h1>Добро пожаловать в Complete OS</h1>
+            <div class="subtitle">Лёгкая, безопасная и удобная сборка Windows 10.</div>
+            <p><strong>Complete OS</strong> — это неофициальный проект, основанный на Windows 10.</p>
+            <p>Система настроена так, чтобы потреблять минимум ресурсов и уважать вашу приватность.</p>
+            <div class="highlight">Нажмите "Далее", чтобы узнать об особенностях.</div>
+            <div class="actions">
+                <button onclick="ShowSlide(2)">Далее</button>
+            </div>
+        </div>
+
+       
+        <div id="slide2">
+            <h1>Ключевые особенности</h1>
+            <div class="subtitle">Почему Complete OS лучше.</div>
+            <ul class="feature-list">
+                <li>Минимальное количество фоновых служб.</li>
+                <li>Отсутствие телеметрии.</li>
+                <li>Автономность и безопасность.</li>
+            </ul>
+            <div class="actions">
+                <button class="btn-secondary" onclick="ShowSlide(1)">Назад</button>
+                <button onclick="ShowSlide(3)">Далее</button>
+            </div>
+        </div>
+
+     
+        <div id="slide3">
+            <h1>Выберите браузер по умолчанию</h1>
+            <div class="subtitle">Какой программой вы будете открывать интернет?</div>
+            <label class="option-card">
+                <input type="radio" name="browser" value="chrome" checked>
+                <div class="option-text"><span class="option-title">Google Chrome</span><span class="option-desc">Проприетарный, самый популярный.</span></div>
+            </label>
+            <label class="option-card">
+                <input type="radio" name="browser" value="firefox">
+                <div class="option-text"><span class="option-title">Mozilla Firefox</span><span class="option-desc">Open Source, приватный.</span></div>
+            </label>
+            <label class="option-card">
+                <input type="radio" name="browser" value="edge">
+                <div class="option-text"><span class="option-title">Microsoft Edge (Пропустить)</span><span class="option-desc">Стандартный браузер.</span></div>
+            </label>
+            <div class="actions">
+                <button class="btn-secondary" onclick="ShowSlide(2)">Назад</button>
+                <button onclick="ShowSlide(4)">Далее</button>
+            </div>
+        </div>
+
+       
+        <div id="slide4">
+            <h1>Настройка безопасности (BitLocker)</h1>
+            <div class="subtitle">Complete OS делает защиту данных простой.</div>
+            <p style="margin-bottom: 20px;">Шифрование защищает ваши файлы от кражи. Требуется TPM модуль.</p>
+            <label class="option-card">
+                <input type="radio" name="bitlocker" id="rbBitlockerOn" value="on">
+                <div class="option-text">
+                    <span class="option-title">🔒 Включить BitLocker (Рекомендуется)</span>
+                    <span class="option-desc">Запрещает доступ к диску на других ПК.</span>
+                </div>
+            </label>
+            <label class="option-card">
+                <input type="radio" name="bitlocker" id="rbBitlockerOff" value="off" checked>
+                <div class="option-text">
+                    <span class="option-title">Пропустить</span>
+                    <span class="option-desc">Оставить диск без шифрования.</span>
+                </div>
+            </label>
+            <div class="actions">
+                <button class="btn-secondary" onclick="ShowSlide(3)">Назад</button>
+                <button onclick="ApplySettings()">Применить настройки</button>
+            </div>
+        </div>
+
+       
+        <div id="slide5">
+            <h1>Приятного использования!</h1>
+            <p>Спасибо за ваше доверие и выбор Complete OS &lt;3</p>
+            <button class="big-btn" onclick="CloseApp()">Начать использование</button>
+        </div>
+
+    </div>
+</body>
+</html>
